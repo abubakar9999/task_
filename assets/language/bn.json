@@ -1,0 +1,26 @@
+{
+    "login": "লগইন",
+    "login_failed": "লগইন ব্যর্থ হয়েছে",
+    "phone": "ফোন",
+    "Password": "পাসওয়ার্ড",
+
+    "registation_screen": "রেজিস্ট্রেশন স্ক্রিন",
+    "name": "নাম",
+    "email": "ইমেল",
+    "division_id": "বিভাগ আইডি",
+    "district_id": "জেলা আইডি",
+    "select_gender": "লিঙ্গ নির্বাচন করুন",
+    "male": "পুরুষ",
+    "female": "মহিলা",
+
+    "sing_up": "নিবন্ধন করুন",
+
+    "themes": "থিম",
+    "english": "ইংরেজি",
+    "bangla": "বাংলা",
+    "arabic": "আরবি",
+    
+    "home": "হোম পেজ",
+    "gender": "লিঙ্গ",
+    "address": "ঠিকানা"
+}

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:interview_task/bloc/login_bloc/bloc/login_bloc.dart';
@@ -12,8 +13,8 @@ class LoginPage extends StatelessWidget {
     final phoneController = TextEditingController();
     final passwordController = TextEditingController();
 
-
     return Scaffold(
+      appBar: AppBar(title: Text("login".tr())),
       body: BlocProvider(
         create: (context) => LoginBloc(),
         child: BlocBuilder<LoginBloc, LoginState>(
@@ -21,10 +22,10 @@ class LoginPage extends StatelessWidget {
             if (state is LoadingState) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is LoginFailureState) {
-              return Center(child: Text('Login failed: ${state.error}'));
+              return Center(child: Text('${"login_failed".tr()}: ${state.error}'));
             } else if (state is LoginSuccessState) {
               // return const Center(child: Text('Login successful'));
-              return HomeScreen();
+              return const HomeScreen();
             } else {
               return Center(
                 child: Padding(
@@ -32,10 +33,12 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CustomTextFeildWidget(controller: phoneController, lebel: "Phone"),
+                      CustomTextFeildWidget(
+                          controller: phoneController, lebel: "phone".tr()),
                       const SizedBox(height: 20),
-                      CustomTextFeildWidget(controller: passwordController, lebel: 'Password'),
-                   
+                      CustomTextFeildWidget(
+                          controller: passwordController, lebel: 'Password'.tr()),
+
                       const SizedBox(height: 20),
                       // TextFormField(
                       //   controller: macAddressController,
@@ -56,14 +59,14 @@ class LoginPage extends StatelessWidget {
                             ),
                           );
                         },
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
+                        child:   Padding(
+                          padding: const EdgeInsets.symmetric(
                             horizontal: 40.0,
                             vertical: 15.0,
                           ),
                           child: Text(
-                            'Login',
-                            style: TextStyle(fontSize: 16),
+                            'login'.tr(),
+                            style: const TextStyle(fontSize: 16),
                           ),
                         ),
                       ),
@@ -78,5 +81,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-

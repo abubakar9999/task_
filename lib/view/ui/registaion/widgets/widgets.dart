@@ -16,17 +16,17 @@ class Datepicker extends StatelessWidget {
     return TextField(
       readOnly: true,
       controller: dob,
-      style: const TextStyle(color: Colors.black),
+      style:   TextStyle(color: Theme.of(context).primaryColorDark),
       textAlign: TextAlign.center,
       decoration: InputDecoration(
-        fillColor: Colors.white,
-        filled: true,
+        // fillColor: Colors.white,
+        // filled: true,
         hintText: 'Date of Birth',
         contentPadding: const EdgeInsets.all(5.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
-        suffixIcon: const Icon(
+        suffixIcon:   Icon(
           Icons.date_range_rounded,
-          color: Colors.blueAccent,
+          color:Theme.of(context).primaryColorLight,
           size: 30.0,
         ),
       ),

@@ -1,0 +1,37 @@
+{
+    "login":"Login",
+    "login_failed":"Login failed",
+    "phone":"Phone",
+    "Password":"Password",
+
+
+    "registation_screen":"Registation Screen",
+    "name":"Name",
+    "email":"Email",
+    "division_id":"Division Id",
+    "district_id":"District Id",
+    "select_gender":"Select Gender",
+    "male":"Male",
+    "female":"Female",
+
+    "sing_up":"Sing Up",
+
+
+
+    "themes":"Themes",
+    "english":"English",
+    "bangla":"Bangla",
+    "arabic":"Arabic",
+
+
+    "home":"Home Page",
+    "gender":"Gender",
+    "address":"Address"
+
+
+
+
+
+
+
+}

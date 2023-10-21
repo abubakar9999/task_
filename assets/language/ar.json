@@ -1,0 +1,26 @@
+{
+    "login": "تسجيل الدخول",
+    "login_failed": "فشل تسجيل الدخول",
+    "phone": "هاتف",
+    "Password": "كلمة المرور",
+
+    "registation_screen": "شاشة التسجيل",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "division_id": "هوية القسم",
+    "district_id": "معرف المنطقة",
+    "select_gender": "اختر الجنس",
+    "male": "ذكر",
+    "female": "أنثى",
+
+    "sing_up": "سجل",
+
+    "themes": "المواضيع",
+    "english": "الإنجليزية",
+    "bangla": "البنغالية",
+    "arabic": "العربية",
+
+    "home": "الصفحة الرئيسية",
+    "gender": "الجنس",
+    "address": "العنوان"
+}
