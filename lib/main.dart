@@ -10,6 +10,7 @@ import 'package:interview_task/themes/dark_theme.dart';
 import 'package:interview_task/themes/light_theme.dart';
 import 'package:interview_task/view/ui/home/home.dart';
 import 'package:interview_task/view/ui/login/widgets/login.dart';
+import 'package:interview_task/view/ui/registaion/registaion.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             theme: state == ThemeMode.light ? lightTheme : darkTheme,
             themeMode: state,
-            home: const LoginPage(),
+            home: const RegistationPage(),
           );
         },
       ),

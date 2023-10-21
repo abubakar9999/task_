@@ -50,188 +50,211 @@ class _RegistationPageState extends State<RegistationPage> {
             if (state is LoadingState) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is RegFailureState) {
-              return Center(child: Text('${"login_failed".tr()}: ${state.error}'));
+              return Center(
+                  child: Text('${"login_failed".tr()}: ${state.error}'));
             } else if (state is RegSuccessState) {
               // return const Center(child: Text('Login successful'));
               return const HomeScreen();
             } else {
               return ListView(
                 children: [
-               
-
                   Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start,
-                     children: [
-                         //************* Screen Title**********
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //************* Screen Title**********
 
+                          Center(
+                              child: Text(
+                            "registation_screen".tr(),
+                            style: const TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.bold),
+                          )),
+                          const SizedBox(height: 50), //hight for space
 
-                        Center(
-                          child: Text(
-                        "registation_screen".tr(),
-                        style: const TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
-                      )),
-                      const SizedBox(height: 50),//hight for space
+                          //************* Profile Picture Image **********
+                          BlocBuilder<PikeImageBloc, PikeImageState>(
+                            builder: (context, state) {
+                              if (state is ImageLoaddedState) {
+                                if (state.logo != null) {
+                                  logo = state.logo!.readAsBytesSync();
+                                }
+                                return Center(
+                                  child: GestureDetector(
+                                    onTap: () => uploadImage(context),
+                                    child: Profilemage(state: state),
+                                  ),
+                                );
+                              } else {
+                                return Center(
+                                  child: ElevatedButton(
+                                      onPressed: () => uploadImage(context),
+                                      child: ClipRRect(
+                                        child: Image.network(
+                                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQlfYzZkDRF3C1pPYhERS7GDGPihBOAiGMXmTw_qMMPwf4S1JvxCMgkiXL7bOYhmI6dwY&usqp=CAU',
+                                          fit: BoxFit.contain,
+                                          height: 150,
+                                          width: 100,
+                                        ),
+                                      )),
+                                );
+                              }
+                            },
+                          ),
+                          const SizedBox(height: 20), //hight for space
 
-                       //************* Profile Picture Image **********
-                      BlocBuilder<PikeImageBloc, PikeImageState>(
-                        builder: (context, state) {
-                          if (state is ImageLoaddedState) {
-                            if (state.logo != null) {
-                              logo = state.logo!.readAsBytesSync();
-                            }
-                            return Center(
-                              child: GestureDetector(
-                                onTap: () => uploadImage(context),
-                                child: Profilemage(state: state),
+                          //************* User Info  **********
+
+                          CustomTextFeildWidget(
+                              controller: nameController, lebel: "name".tr()),
+                          const SizedBox(height: 20), //hight for space
+                          CustomTextFeildWidget(
+                              controller: emailController, lebel: "email".tr()),
+                          const SizedBox(height: 20), //hight for space
+
+                          //************* Get Country code for mobile **********
+
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton(
+                                    items: CountryCode().dropdownItems,
+                                    value: countryCodeValue,
+                                    dropdownColor:
+                                        const Color.fromARGB(255, 5, 4, 0),
+                                    style: const TextStyle(fontSize: 20),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        countryCodeValue = value;
+                                      });
+                                    },
+                                  ),
+                                ),
                               ),
-                            );
-                          } else {
-                            return Center(
-                              child: ElevatedButton(
-                                  onPressed: () => uploadImage(context),
-                                  child: ClipRRect(
-                                 
-                                    child: Image.network(
-                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQlfYzZkDRF3C1pPYhERS7GDGPihBOAiGMXmTw_qMMPwf4S1JvxCMgkiXL7bOYhmI6dwY&usqp=CAU',
-                                      fit: BoxFit.contain,
-                                      height: 150,
-                                      width: 100,
-                                    ),
-                                  )),
-                            );
-                          }
-                        },
-                      ),
-                        const SizedBox(height: 20),//hight for space
+                              Expanded(
+                                  flex: 5,
+                                  child: CustomTextFeildWidget(
+                                      controller: phoneController,
+                                      lebel: "phone".tr())),
+                            ],
+                          ),
 
-                         //************* User Info  **********
+                          //countrycode
+                          const SizedBox(height: 20),
+                          //************* Date Of Birth **********
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 2,
+                                child: Text(
+                                  "DOB :",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                flex: 5,
+                                child: Datepicker(
+                                  dob: dob,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Text(
+                                  "${"division_id".tr()} :",
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: CustomTextFeildWidget(
+                                    controller: divController, lebel: "0"),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Text("${"district_id".tr()} :",
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500)),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: CustomTextFeildWidget(
+                                    controller: disController, lebel: "0"),
+                              ),
+                            ],
+                          ),
 
-                      CustomTextFeildWidget(controller: nameController, lebel: "name".tr()),
-                      const SizedBox(height: 20),//hight for space
-                      CustomTextFeildWidget(controller: emailController, lebel: "email".tr()),
-                      const SizedBox(height: 20),//hight for space
+                          const SizedBox(height: 20),
 
+                          //************* Gender Info **********
 
-                     //************* Get Country code for mobile **********
+                          Text(
+                            'select_gender'.tr(),
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w500),
+                          ),
+                          Row(
+                            children: [
+                              Gender(gender: "male".tr()),
+                              Gender(gender: "female".tr()),
+                            ],
+                          ),
 
-                      Row(
-                        children: [
-                          DropdownButtonHideUnderline(
-                            child: DropdownButton(
-                              items: CountryCode().dropdownItems,
-                              value: countryCodeValue,
-                              dropdownColor:const Color.fromARGB(255, 5, 4, 0),
-                              style:const TextStyle(fontSize: 20),
-                              onChanged: (value) {
-                                setState(() {
-                                countryCodeValue = value;
-                                  
-                                });
-                                
+                          Center(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                isValidEmail(emailController.text)
+                                    ? BlocProvider.of<RegistationBloc>(context)
+                                        .add(RegButtonPressed(
+                                            name: nameController.text,
+                                            email:
+                                                emailController.text.toString(),
+                                            phone: phoneController.text,
+                                            countrycode:
+                                                countryCodeValue.toString(),
+                                            adderss: "Dhaka bangadesh",
+                                            districId:
+                                                int.parse(disController.text),
+                                            divisionId:
+                                                int.parse(divController.text),
+                                            dob: dob.text,
+                                            gender: "mail",
+                                            macadderss: "sdljfld",
+                                            password: passwordController.text,
+                                            photo: "photo"))
+                                    : const ScaffoldMessenger(
+                                        child: Text("Enter valid Email"));
                               },
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 40.0,
+                                  vertical: 15.0,
+                                ),
+                                child: Text(
+                                  'sing_up'.tr(),
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                              ),
                             ),
                           ),
-                          
-                      SizedBox(
-                        width:310 ,
-                        
-                        child: CustomTextFeildWidget(controller: phoneController, lebel: "phone".tr())),
-                        ],
-                      ),
-
-                      //countrycode
-                      const SizedBox(height: 20),
-                        //************* Date Of Birth **********
-                      Row(
-                        children: [
-                          const Text(
-                            "DOB :",
-                            style:TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold
-
-
-                            ),
-                          ),
-                          const SizedBox(width: 10,),
-                          SizedBox(
-                            width: 300,
-                            child: Datepicker(
-                              dob: dob,
-                            ),
-                          ),
-                        ],
-                      ),
-                       const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                           Text("${"division_id".tr()} :",style:const TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                          SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: CustomTextFeildWidget(controller: divController, lebel: "0"),
-                          ),
-                          Text("${"district_id".tr()} :",style: const TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
-                          SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: CustomTextFeildWidget(controller: disController, lebel: "0"),
-                          ),
-                        ],
-                      ),
-
-                        const SizedBox(height: 20),
-
-                       //************* Gender Info **********
-
-                       Text(
-                        'select_gender'.tr(),
-                        style:const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      Row(
-                        children: [
-                          Gender(gender: "male".tr()),
-                          Gender(gender: "female".tr()),
-                        ],
-                      ),
-
-
-                     
-
-
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            isValidEmail(emailController.text)?
-                            BlocProvider.of<RegistationBloc>(context).add(RegButtonPressed(
-                                name: nameController.text,
-                                email: emailController.text.toString(),
-                                phone: phoneController.text,
-                                countrycode: countryCodeValue.toString(),
-                                adderss: "Dhaka bangadesh",
-                                districId: int.parse(disController.text),
-                                divisionId: int.parse(divController.text),
-                                dob: dob.text,
-                                gender: "mail",
-                                macadderss: "sdljfld",
-                                password: passwordController.text,
-                                photo: "photo")):const ScaffoldMessenger(child: Text("Enter valid Email"));
-                          },
-                          child:  Padding(
-                            padding:const EdgeInsets.symmetric(
-                              horizontal: 40.0,
-                              vertical: 15.0,
-                            ),
-                            child: Text(
-                              'sing_up'.tr(),
-                              style:const TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]),
+                        ]),
                   ),
                 ],
               );
