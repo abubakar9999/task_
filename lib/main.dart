@@ -9,8 +9,7 @@ import 'package:interview_task/bloc/theam_bloc/bloc/theam_bloc.dart';
 import 'package:interview_task/themes/dark_theme.dart';
 import 'package:interview_task/themes/light_theme.dart';
 import 'package:interview_task/view/ui/home/home.dart';
-
-import 'package:interview_task/view/ui/registaion/registaion.dart';
+import 'package:interview_task/view/ui/login/widgets/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +20,7 @@ void main() async {
       saveLocale: true,
       fallbackLocale: const Locale('en'),
       startLocale: const Locale('en'),
-      child: MyApp()));
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -55,7 +54,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             theme: state == ThemeMode.light ? lightTheme : darkTheme,
             themeMode: state,
-            home: HomeScreen(),
+            home: const LoginPage(),
           );
         },
       ),

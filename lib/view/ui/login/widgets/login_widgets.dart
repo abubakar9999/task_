@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFeildWidget extends StatelessWidget {
-  CustomTextFeildWidget({
+  const CustomTextFeildWidget({
     super.key,
     required this.controller,
     required this.lebel,
@@ -16,7 +16,7 @@ class CustomTextFeildWidget extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         labelText: lebel,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
     );
   }

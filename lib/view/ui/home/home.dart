@@ -24,10 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("home").tr(),
+        title: const Text("home").tr(),
         centerTitle: true,
       ),
-      drawer: DrawerWidgets(),
+      drawer: const DrawerWidgets(),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state is HomeLodingState) {

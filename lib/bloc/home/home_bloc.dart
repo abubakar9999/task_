@@ -12,7 +12,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeLodingState());
       print("hitted2");
 
-      Future.delayed(Duration(seconds: 3));
+      Future.delayed(const Duration(seconds: 3));
       print("hitted3");
 
       Map data = Repository().home();

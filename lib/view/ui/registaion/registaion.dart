@@ -14,7 +14,7 @@ import 'package:interview_task/view/ui/registaion/widgets/widgets.dart';
 
 // ignore: must_be_immutable
 class RegistationPage extends StatefulWidget {
-  RegistationPage({super.key});
+  const RegistationPage({super.key});
 
   @override
   State<RegistationPage> createState() => _RegistationPageState();
@@ -69,7 +69,7 @@ class _RegistationPageState extends State<RegistationPage> {
                         Center(
                           child: Text(
                         "registation_screen".tr(),
-                        style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
                       )),
                       const SizedBox(height: 50),//hight for space
 
@@ -154,7 +154,7 @@ class _RegistationPageState extends State<RegistationPage> {
 
                             ),
                           ),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 10,),
                           SizedBox(
                             width: 300,
                             child: Datepicker(
@@ -217,7 +217,7 @@ class _RegistationPageState extends State<RegistationPage> {
                                 gender: "mail",
                                 macadderss: "sdljfld",
                                 password: passwordController.text,
-                                photo: "photo")):ScaffoldMessenger(child: Text("Enter valid Email"));
+                                photo: "photo")):const ScaffoldMessenger(child: Text("Enter valid Email"));
                           },
                           child:  Padding(
                             padding:const EdgeInsets.symmetric(
